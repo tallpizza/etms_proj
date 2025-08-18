@@ -15,6 +15,8 @@
     rdfs:domain <http://example.org/ontology#etms#Daily> ;
     rdfs:range <http://example.org/ontology#etms#Training> .
 
+<http://example.org/ontology#etms#certificationDate> a owl:DatatypeProperty .
+
 <http://example.org/ontology#etms#content> a owl:DatatypeProperty ;
     rdfs:domain <http://example.org/ontology#etms#ExamItem> .
 
@@ -35,18 +37,24 @@
 <http://example.org/ontology#etms#durationHours> a owl:DatatypeProperty ;
     rdfs:domain <http://example.org/ontology#etms#SubjectTemplate> .
 
+<http://example.org/ontology#etms#email> a owl:DatatypeProperty ;
+    rdfs:domain <http://example.org/ontology#etms#Member> .
+
 <http://example.org/ontology#etms#endDate> a owl:DatatypeProperty ;
     rdfs:domain <http://example.org/ontology#etms#Training> .
 
 <http://example.org/ontology#etms#endTime> a owl:DatatypeProperty ;
     rdfs:domain <http://example.org/ontology#etms#DailySubject> .
 
+<http://example.org/ontology#etms#examinerLevel> a owl:DatatypeProperty .
+
 <http://example.org/ontology#etms#hasDaily> a owl:ObjectProperty ;
     rdfs:domain <http://example.org/ontology#etms#Training> ;
     rdfs:range <http://example.org/ontology#etms#Daily> .
 
 <http://example.org/ontology#etms#hasDailySubject> a owl:ObjectProperty ;
-    rdfs:domain <http://example.org/ontology#etms#Daily> .
+    rdfs:domain <http://example.org/ontology#etms#Daily> ;
+    rdfs:range <http://example.org/ontology#etms#DailySubject> .
 
 <http://example.org/ontology#etms#hasDirectItem> a owl:ObjectProperty ;
     rdfs:domain <http://example.org/ontology#etms#ExamForm> ;
@@ -56,9 +64,21 @@
     rdfs:domain <http://example.org/ontology#etms#PracticalQuestion> ;
     rdfs:range <http://example.org/ontology#etms#ExamForm> .
 
+<http://example.org/ontology#etms#hasExaminer> a owl:ObjectProperty ;
+    rdfs:domain <http://example.org/ontology#etms#DailySubject> ;
+    rdfs:range <http://example.org/ontology#etms#Member> .
+
+<http://example.org/ontology#etms#hasInstructor> a owl:ObjectProperty ;
+    rdfs:domain <http://example.org/ontology#etms#DailySubject> ;
+    rdfs:range <http://example.org/ontology#etms#Member> .
+
 <http://example.org/ontology#etms#hasItem> a owl:ObjectProperty ;
     rdfs:domain <http://example.org/ontology#etms#ExamSection> ;
     rdfs:range <http://example.org/ontology#etms#ExamItem> .
+
+<http://example.org/ontology#etms#hasMemberLicense> a owl:ObjectProperty ;
+    rdfs:domain <http://example.org/ontology#etms#Member> ;
+    rdfs:range <http://example.org/ontology#etms#MemberLicense> .
 
 <http://example.org/ontology#etms#hasPracticalQuestion> a owl:ObjectProperty ;
     rdfs:domain <http://example.org/ontology#etms#SubjectTemplate> ;
@@ -88,19 +108,38 @@
     rdfs:range <http://example.org/ontology#etms#Training> .
 
 <http://example.org/ontology#etms#isActive> a owl:DatatypeProperty ;
-    rdfs:domain <http://example.org/ontology#etms#DailySubject> .
+    rdfs:domain <http://example.org/ontology#etms#Member> .
 
 <http://example.org/ontology#etms#isDraft> a owl:DatatypeProperty ;
     rdfs:domain <http://example.org/ontology#etms#PracticalQuestion> .
 
+<http://example.org/ontology#etms#licenseCode> a owl:DatatypeProperty ;
+    rdfs:domain <http://example.org/ontology#etms#License> .
+
+<http://example.org/ontology#etms#licenseName> a owl:DatatypeProperty ;
+    rdfs:domain <http://example.org/ontology#etms#License> .
+
+<http://example.org/ontology#etms#licenseReference> a owl:ObjectProperty ;
+    rdfs:domain <http://example.org/ontology#etms#MemberLicense> ;
+    rdfs:range <http://example.org/ontology#etms#License> .
+
+<http://example.org/ontology#etms#licenseType> a owl:DatatypeProperty ;
+    rdfs:domain <http://example.org/ontology#etms#License> .
+
 <http://example.org/ontology#etms#maxPassingCount> a owl:DatatypeProperty ;
     rdfs:domain <http://example.org/ontology#etms#PracticalQuestion> .
 
+<http://example.org/ontology#etms#memberHasLicense> a owl:ObjectProperty ;
+    rdfs:domain <http://example.org/ontology#etms#MemberLicense> ;
+    rdfs:range <http://example.org/ontology#etms#Member> .
+
 <http://example.org/ontology#etms#name> a owl:DatatypeProperty ;
-    rdfs:domain <http://example.org/ontology#etms#Subject> .
+    rdfs:domain <http://example.org/ontology#etms#Member> .
 
 <http://example.org/ontology#etms#nameEn> a owl:DatatypeProperty ;
     rdfs:domain <http://example.org/ontology#etms#SubjectTemplate> .
+
+<http://example.org/ontology#etms#qualification> a owl:DatatypeProperty .
 
 <http://example.org/ontology#etms#referencesSubject> a owl:ObjectProperty ;
     rdfs:domain <http://example.org/ontology#etms#DailySubject> ;
@@ -114,6 +153,8 @@
 
 <http://example.org/ontology#etms#sortOrder> a owl:DatatypeProperty ;
     rdfs:domain <http://example.org/ontology#etms#SubjectTemplate> .
+
+<http://example.org/ontology#etms#specialization> a owl:DatatypeProperty .
 
 <http://example.org/ontology#etms#startDate> a owl:DatatypeProperty ;
     rdfs:domain <http://example.org/ontology#etms#Training> .
@@ -130,6 +171,9 @@
 <http://example.org/ontology#etms#type> a owl:DatatypeProperty ;
     rdfs:domain <http://example.org/ontology#etms#ExamItem> .
 
+<http://example.org/ontology#etms#username> a owl:DatatypeProperty ;
+    rdfs:domain <http://example.org/ontology#etms#Member> .
+
 <http://example.org/ontology#etms#version> a owl:DatatypeProperty ;
     rdfs:domain <http://example.org/ontology#etms#PracticalQuestion> .
 
@@ -139,13 +183,19 @@
 <http://example.org/ontology#etms#ExamForm> a owl:Class ;
     rdfs:subClassOf owl:Thing .
 
+<http://example.org/ontology#etms#MemberLicense> a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
+<http://example.org/ontology#etms#Subject> a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
 <http://example.org/ontology#etms#TrainingTemplate> a owl:Class ;
     rdfs:subClassOf owl:Thing .
 
 <http://example.org/ontology#etms#ExamItem> a owl:Class ;
     rdfs:subClassOf owl:Thing .
 
-<http://example.org/ontology#etms#Subject> a owl:Class ;
+<http://example.org/ontology#etms#License> a owl:Class ;
     rdfs:subClassOf owl:Thing .
 
 <http://example.org/ontology#etms#SubjectGroup> a owl:Class ;
@@ -154,10 +204,13 @@
 <http://example.org/ontology#etms#Daily> a owl:Class ;
     rdfs:subClassOf owl:Thing .
 
+<http://example.org/ontology#etms#PracticalQuestion> a owl:Class ;
+    rdfs:subClassOf owl:Thing .
+
 <http://example.org/ontology#etms#DailySubject> a owl:Class ;
     rdfs:subClassOf owl:Thing .
 
-<http://example.org/ontology#etms#PracticalQuestion> a owl:Class ;
+<http://example.org/ontology#etms#Member> a owl:Class ;
     rdfs:subClassOf owl:Thing .
 
 <http://example.org/ontology#etms#SubjectTemplate> a owl:Class ;

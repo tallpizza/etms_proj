@@ -79,6 +79,7 @@
 
 <owl:ObjectProperty rdf:about="#hasDailySubject">
   <rdfs:domain rdf:resource="#Daily"/>
+  <rdfs:range rdf:resource="#DailySubject"/>
 </owl:ObjectProperty>
 
 <owl:ObjectProperty rdf:about="#belongsToDaily">
@@ -94,6 +95,31 @@
 <owl:ObjectProperty rdf:about="#hasDaily">
   <rdfs:domain rdf:resource="#Training"/>
   <rdfs:range rdf:resource="#Daily"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#memberHasLicense">
+  <rdfs:domain rdf:resource="#MemberLicense"/>
+  <rdfs:range rdf:resource="#Member"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#licenseReference">
+  <rdfs:domain rdf:resource="#MemberLicense"/>
+  <rdfs:range rdf:resource="#License"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasMemberLicense">
+  <rdfs:domain rdf:resource="#Member"/>
+  <rdfs:range rdf:resource="#MemberLicense"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasInstructor">
+  <rdfs:domain rdf:resource="#DailySubject"/>
+  <rdfs:range rdf:resource="#Member"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasExaminer">
+  <rdfs:domain rdf:resource="#DailySubject"/>
+  <rdfs:range rdf:resource="#Member"/>
 </owl:ObjectProperty>
 
 <owl:DatatypeProperty rdf:about="#title">
@@ -113,7 +139,7 @@
 </owl:DatatypeProperty>
 
 <owl:DatatypeProperty rdf:about="#isActive">
-  <rdfs:domain rdf:resource="#DailySubject"/>
+  <rdfs:domain rdf:resource="#Member"/>
 </owl:DatatypeProperty>
 
 <owl:DatatypeProperty rdf:about="#content">
@@ -129,7 +155,7 @@
 </owl:DatatypeProperty>
 
 <owl:DatatypeProperty rdf:about="#name">
-  <rdfs:domain rdf:resource="#Subject"/>
+  <rdfs:domain rdf:resource="#Member"/>
 </owl:DatatypeProperty>
 
 <owl:DatatypeProperty rdf:about="#nameEn">
@@ -176,15 +202,43 @@
   <rdfs:domain rdf:resource="#DailySubject"/>
 </owl:DatatypeProperty>
 
+<owl:DatatypeProperty rdf:about="#username">
+  <rdfs:domain rdf:resource="#Member"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#email">
+  <rdfs:domain rdf:resource="#Member"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#qualification"/>
+
+<owl:DatatypeProperty rdf:about="#specialization"/>
+
+<owl:DatatypeProperty rdf:about="#examinerLevel"/>
+
+<owl:DatatypeProperty rdf:about="#certificationDate"/>
+
+<owl:DatatypeProperty rdf:about="#licenseCode">
+  <rdfs:domain rdf:resource="#License"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#licenseName">
+  <rdfs:domain rdf:resource="#License"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#licenseType">
+  <rdfs:domain rdf:resource="#License"/>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:about="#PracticalQuestion">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
 <owl:Class rdf:about="#ExamForm">
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
 </owl:Class>
 
 <owl:Class rdf:about="#ExamSection">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-</owl:Class>
-
-<owl:Class rdf:about="#ExamItem">
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
 </owl:Class>
 
@@ -200,7 +254,7 @@
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
 </owl:Class>
 
-<owl:Class rdf:about="#PracticalQuestion">
+<owl:Class rdf:about="#ExamItem">
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
 </owl:Class>
 
@@ -208,15 +262,27 @@
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
 </owl:Class>
 
-<owl:Class rdf:about="#Subject">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-</owl:Class>
-
 <owl:Class rdf:about="#Daily">
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
 </owl:Class>
 
+<owl:Class rdf:about="#Subject">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
 <owl:Class rdf:about="#DailySubject">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Member">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#License">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#MemberLicense">
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
 </owl:Class>
 
