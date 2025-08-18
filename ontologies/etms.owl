@@ -1,0 +1,224 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://example.org/ontology#etms"
+         xmlns="http://example.org/ontology#etms#">
+
+<owl:Ontology rdf:about="http://example.org/ontology#etms"/>
+
+<owl:ObjectProperty rdf:about="#hasExamForm">
+  <rdfs:domain rdf:resource="#PracticalQuestion"/>
+  <rdfs:range rdf:resource="#ExamForm"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasSection">
+  <rdfs:domain rdf:resource="#ExamForm"/>
+  <rdfs:range rdf:resource="#ExamSection"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasSubjectGroup">
+  <rdfs:domain rdf:resource="#TrainingTemplate"/>
+  <rdfs:range rdf:resource="#SubjectGroup"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasSubjectTemplate">
+  <rdfs:domain rdf:resource="#SubjectGroup"/>
+  <rdfs:range rdf:resource="#SubjectTemplate"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasSubGroup">
+  <rdfs:domain rdf:resource="#SubjectGroup"/>
+  <rdfs:range rdf:resource="#SubjectGroup"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasPracticalQuestion">
+  <rdfs:domain rdf:resource="#SubjectTemplate"/>
+  <rdfs:range rdf:resource="#PracticalQuestion"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#belongsToSubjectTemplate">
+  <rdfs:range rdf:resource="#SubjectTemplate"/>
+  <rdfs:domain rdf:resource="#PracticalQuestion"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasDirectItem">
+  <rdfs:domain rdf:resource="#ExamForm"/>
+  <rdfs:range rdf:resource="#ExamItem"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasItem">
+  <rdfs:domain rdf:resource="#ExamSection"/>
+  <rdfs:range rdf:resource="#ExamItem"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasSubject">
+  <rdfs:domain rdf:resource="#Training"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#belongsToTraining">
+  <rdfs:range rdf:resource="#Training"/>
+  <rdfs:domain rdf:resource="#Daily"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#createdFromTrainingTemplate">
+  <rdfs:domain rdf:resource="#Training"/>
+  <rdfs:range rdf:resource="#TrainingTemplate"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#createdFromSubjectTemplate">
+  <rdfs:domain rdf:resource="#Subject"/>
+  <rdfs:range rdf:resource="#SubjectTemplate"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasTrainingInstance">
+  <rdfs:domain rdf:resource="#TrainingTemplate"/>
+  <rdfs:range rdf:resource="#Training"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasDailySubject">
+  <rdfs:domain rdf:resource="#Daily"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#belongsToDaily">
+  <rdfs:domain rdf:resource="#DailySubject"/>
+  <rdfs:range rdf:resource="#Daily"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#referencesSubject">
+  <rdfs:domain rdf:resource="#DailySubject"/>
+  <rdfs:range rdf:resource="#Subject"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasDaily">
+  <rdfs:domain rdf:resource="#Training"/>
+  <rdfs:range rdf:resource="#Daily"/>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:about="#title">
+  <rdfs:domain rdf:resource="#Training"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#version">
+  <rdfs:domain rdf:resource="#PracticalQuestion"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#isDraft">
+  <rdfs:domain rdf:resource="#PracticalQuestion"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#sequence">
+  <rdfs:domain rdf:resource="#DailySubject"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#isActive">
+  <rdfs:domain rdf:resource="#DailySubject"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#content">
+  <rdfs:domain rdf:resource="#ExamItem"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#type">
+  <rdfs:domain rdf:resource="#ExamItem"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#status">
+  <rdfs:domain rdf:resource="#Subject"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#name">
+  <rdfs:domain rdf:resource="#Subject"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#nameEn">
+  <rdfs:domain rdf:resource="#SubjectTemplate"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#description">
+  <rdfs:domain rdf:resource="#SubjectTemplate"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#sortOrder">
+  <rdfs:domain rdf:resource="#SubjectTemplate"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#durationHours">
+  <rdfs:domain rdf:resource="#SubjectTemplate"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#maxPassingCount">
+  <rdfs:domain rdf:resource="#PracticalQuestion"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#startDate">
+  <rdfs:domain rdf:resource="#Training"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#endDate">
+  <rdfs:domain rdf:resource="#Training"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#scheduleDate">
+  <rdfs:domain rdf:resource="#Daily"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#dayOfWeek">
+  <rdfs:domain rdf:resource="#Daily"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#startTime">
+  <rdfs:domain rdf:resource="#DailySubject"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#endTime">
+  <rdfs:domain rdf:resource="#DailySubject"/>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:about="#ExamForm">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#ExamSection">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#ExamItem">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#TrainingTemplate">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#SubjectGroup">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#SubjectTemplate">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#PracticalQuestion">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Training">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Subject">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Daily">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#DailySubject">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+
+</rdf:RDF>
