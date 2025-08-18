@@ -1,3 +1,4 @@
+@prefix ns1: <http://www.lesfleursdunormal.fr/static/_downloads/owlready_ontology.owl#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -122,6 +123,7 @@
     rdfs:domain <http://example.org/ontology#etms#ExamItemResult> .
 
 <http://example.org/ontology#etms#hasConfigInstructor> a owl:ObjectProperty ;
+    ns1:python_name "hasConfigInstructor"^^xsd:string ;
     rdfs:domain <http://example.org/ontology#etms#ExamConfig> ;
     rdfs:range <http://example.org/ontology#etms#Member> .
 

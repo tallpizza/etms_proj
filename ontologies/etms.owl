@@ -4,7 +4,8 @@
          xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
          xmlns:owl="http://www.w3.org/2002/07/owl#"
          xml:base="http://example.org/ontology#etms"
-         xmlns="http://example.org/ontology#etms#">
+         xmlns="http://example.org/ontology#etms#"
+         xmlns:owlr="http://www.lesfleursdunormal.fr/static/_downloads/owlready_ontology.owl#">
 
 <owl:Ontology rdf:about="http://example.org/ontology#etms"/>
 
@@ -146,6 +147,7 @@
 <owl:ObjectProperty rdf:about="#hasConfigInstructor">
   <rdfs:domain rdf:resource="#ExamConfig"/>
   <rdfs:range rdf:resource="#Member"/>
+  <owlr:python_name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hasConfigInstructor</owlr:python_name>
 </owl:ObjectProperty>
 
 <owl:ObjectProperty rdf:about="#relatedToDailySubject">
@@ -368,7 +370,16 @@
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
 </owl:Class>
 
+<owl:Class rdf:about="#ExamSubmission">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">실습심사 멤버별 시험지 (PracticalExamSubmission entity)</rdfs:comment>
+</owl:Class>
+
 <owl:Class rdf:about="#ExamItem">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Subject">
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
 </owl:Class>
 
@@ -380,11 +391,11 @@
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
 </owl:Class>
 
-<owl:Class rdf:about="#Subject">
+<owl:Class rdf:about="#DailySubject">
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
 </owl:Class>
 
-<owl:Class rdf:about="#DailySubject">
+<owl:Class rdf:about="#MemberLicense">
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
 </owl:Class>
 
@@ -394,15 +405,6 @@
 
 <owl:Class rdf:about="#License">
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-</owl:Class>
-
-<owl:Class rdf:about="#MemberLicense">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-</owl:Class>
-
-<owl:Class rdf:about="#ExamSubmission">
-  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
-  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">실습심사 멤버별 시험지 (PracticalExamSubmission entity)</rdfs:comment>
 </owl:Class>
 
 <owl:Class rdf:about="#ExamConfig">
