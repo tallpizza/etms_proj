@@ -34,8 +34,8 @@
 </owl:ObjectProperty>
 
 <owl:ObjectProperty rdf:about="#hasPracticalQuestion">
-  <rdfs:domain rdf:resource="#SubjectTemplate"/>
   <rdfs:range rdf:resource="#PracticalQuestion"/>
+  <rdfs:domain rdf:resource="#ExamSubmission"/>
 </owl:ObjectProperty>
 
 <owl:ObjectProperty rdf:about="#belongsToSubjectTemplate">
@@ -54,7 +54,8 @@
 </owl:ObjectProperty>
 
 <owl:ObjectProperty rdf:about="#hasSubject">
-  <rdfs:domain rdf:resource="#Training"/>
+  <rdfs:domain rdf:resource="#ExamSubmission"/>
+  <rdfs:range rdf:resource="#Subject"/>
 </owl:ObjectProperty>
 
 <owl:ObjectProperty rdf:about="#belongsToTraining">
@@ -120,6 +121,83 @@
 <owl:ObjectProperty rdf:about="#hasExaminer">
   <rdfs:domain rdf:resource="#DailySubject"/>
   <rdfs:range rdf:resource="#Member"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasExaminee">
+  <rdfs:domain rdf:resource="#ExamSubmission"/>
+  <rdfs:range rdf:resource="#Member"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#configuresPracticalQuestion">
+  <rdfs:domain rdf:resource="#ExamConfig"/>
+  <rdfs:range rdf:resource="#PracticalQuestion"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#configuresSubject">
+  <rdfs:domain rdf:resource="#ExamConfig"/>
+  <rdfs:range rdf:resource="#Subject"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#basedOnConfig">
+  <rdfs:domain rdf:resource="#ExamSubmission"/>
+  <rdfs:range rdf:resource="#ExamConfig"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasConfigInstructor">
+  <rdfs:domain rdf:resource="#ExamConfig"/>
+  <rdfs:range rdf:resource="#Member"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#relatedToDailySubject">
+  <rdfs:domain rdf:resource="#ExamSubmission"/>
+  <rdfs:range rdf:resource="#DailySubject"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasPassStatus">
+  <rdfs:domain rdf:resource="#ExamSubmission"/>
+  <rdfs:range rdf:resource="#PassStatus"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#forExamSubmission">
+  <rdfs:domain rdf:resource="#ExamItemResult"/>
+  <rdfs:range rdf:resource="#ExamSubmission"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#forExamItem">
+  <rdfs:domain rdf:resource="#ExamItemResult"/>
+  <rdfs:range rdf:resource="#ExamItem"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#examiner1">
+  <rdfs:domain rdf:resource="#ExamSubmission"/>
+  <rdfs:range rdf:resource="#Member"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#examiner2">
+  <rdfs:domain rdf:resource="#ExamSubmission"/>
+  <rdfs:range rdf:resource="#Member"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#reviewedByInstructor">
+  <rdfs:domain rdf:resource="#ExamSubmission"/>
+  <rdfs:range rdf:resource="#Member"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasMember">
+  <rdfs:range rdf:resource="#Member"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasTrainingTemplate">
+  <rdfs:range rdf:resource="#TrainingTemplate"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#hasFinalStatus">
+  <rdfs:range rdf:resource="#PassStatus"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#relatedToTrainingTemplate">
+  <rdfs:domain rdf:resource="#ExamSubmission"/>
+  <rdfs:range rdf:resource="#TrainingTemplate"/>
 </owl:ObjectProperty>
 
 <owl:DatatypeProperty rdf:about="#title">
@@ -212,8 +290,6 @@
 
 <owl:DatatypeProperty rdf:about="#qualification"/>
 
-<owl:DatatypeProperty rdf:about="#specialization"/>
-
 <owl:DatatypeProperty rdf:about="#examinerLevel"/>
 
 <owl:DatatypeProperty rdf:about="#certificationDate"/>
@@ -228,6 +304,44 @@
 
 <owl:DatatypeProperty rdf:about="#licenseType">
   <rdfs:domain rdf:resource="#License"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#maxExamAttempts">
+  <rdfs:domain rdf:resource="#PracticalQuestion"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#maxReexamAttempts">
+  <rdfs:domain rdf:resource="#TrainingTemplate"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#currentSessionNumber">
+  <rdfs:domain rdf:resource="#ExamSubmission"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#hasComment">
+  <rdfs:domain rdf:resource="#ExamItemResult"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#sessionNumber">
+  <rdfs:domain rdf:resource="#ExamItemResult"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#evaluated1At">
+  <rdfs:domain rdf:resource="#ExamSubmission"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#evaluated2At">
+  <rdfs:domain rdf:resource="#ExamSubmission"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#currentReexamLevel"/>
+
+<owl:DatatypeProperty rdf:about="#reexamLevel">
+  <rdfs:domain rdf:resource="#ExamSubmission"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#globalAttemptCount">
+  <rdfs:domain rdf:resource="#ExamSubmission"/>
 </owl:DatatypeProperty>
 
 <owl:Class rdf:about="#PracticalQuestion">
@@ -285,6 +399,61 @@
 <owl:Class rdf:about="#MemberLicense">
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
 </owl:Class>
+
+<owl:Class rdf:about="#ExamSubmission">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">실습심사 멤버별 시험지 (PracticalExamSubmission entity)</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#ExamConfig">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">실습심사 양식 기본 설정 (PracticalExamFormConfiguration entity)</rdfs:comment>
+</owl:Class>
+
+<owl:Class rdf:about="#PassStatus">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#ExamItemResult">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">실습심사 항목별 평가 결과 (PracticalExamItemResult entity)</rdfs:comment>
+</owl:Class>
+
+<owl:NamedIndividual rdf:about="#PENDING">
+  <rdf:type rdf:resource="#PassStatus"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#PASS">
+  <rdf:type rdf:resource="#PassStatus"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#FAIL">
+  <rdf:type rdf:resource="#PassStatus"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#REEXAM">
+  <rdf:type rdf:resource="#PassStatus"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#REEXAM_PASS">
+  <rdf:type rdf:resource="#PassStatus"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#REEXAM_FAIL">
+  <rdf:type rdf:resource="#PassStatus"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#REEXAM2_PASS">
+  <rdf:type rdf:resource="#PassStatus"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#REEXAM2_FAIL">
+  <rdf:type rdf:resource="#PassStatus"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#FINAL_FAIL">
+  <rdf:type rdf:resource="#PassStatus"/>
+</owl:NamedIndividual>
 
 
 </rdf:RDF>
