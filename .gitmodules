@@ -1,0 +1,6 @@
+[submodule "etms"]
+	path = etms
+	url = git@github.com:eastarjet-etms/etms_frontend.git
+[submodule "etms_backend"]
+	path = etms_backend
+	url = git@github.com:eastarjet-etms/etms_backend.git
