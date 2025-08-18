@@ -1,0 +1,40 @@
+{
+  "mcpServers": {
+    "ontology": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/codestepteam/ontology-mcp.git",
+        "ontology-builder",
+        "--ontology-name",
+        "etms"
+      ],
+      "env": {
+        "PYTHONUNBUFFERED": "1"
+      }
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"]
+    },
+    "serena": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/oraios/serena",
+        "serena",
+        "start-mcp-server",
+        "--context",
+        "ide-assistant",
+        "--project",
+        "/Users/tallpizza/source/codestep/etms_proj"
+      ],
+      "env": {}
+    }
+  }
+}
