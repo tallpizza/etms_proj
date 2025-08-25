@@ -35,6 +35,21 @@
         "/Users/tallpizza/source/codestep/etms_proj"
       ],
       "env": {}
+    },
+    "dooray": {
+      "type": "stdio",
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/tallpizza/dooray-mcp.git",
+        "dooray-mcp"
+      ],
+      "env": {
+        "DOORAY_API_TOKEN": "spuio91dvw2b:09_758iFSlKyvtcsfVa6JA",
+        "DOORAY_BASE_URL": "https://api.dooray.com",
+        "DOORAY_DEFAULT_PROJECT_ID": "4083027435241316930",
+        "PYTHONUNBUFFERED": "1"
+      }
     }
   }
 }
