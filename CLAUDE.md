@@ -63,6 +63,46 @@ cd etms_backend/
 ./gradlew compileJava  # Generate QueryDSL classes
 ```
 
+#### Database Management (데이터베이스 관리)
+
+**로컬 개발 환경**:
+- **데이터 저장**: Docker 볼륨 (`etms_backend_mysql_data`)
+- **데이터 영속화**: 애플리케이션 재시작 시 데이터 유지
+- **초기화 방식**: 조건부 초기화 (DB가 비어있을 때만 실행)
+
+**실행 프로세스**:
+
+```bash
+# 첫 실행 (DB 초기화 필요시)
+docker-compose -f docker-compose.local.yml up -d
+export $(cat .env | xargs)
+./gradlew bootRun --args='--spring.profiles.active=local' | grep -v "^\s*at "
+# → 자동으로 테이블 생성 + 초기 데이터 로드
+
+# 재시작 (데이터 유지)
+export $(cat .env | xargs)
+./gradlew bootRun --args='--spring.profiles.active=local' | grep -v "^\s*at "
+# → 기존 데이터 유지
+
+# 데이터 완전 초기화
+docker-compose -f docker-compose.local.yml down -v  # 볼륨 삭제
+docker-compose -f docker-compose.local.yml up -d    # 새 볼륨으로 재시작
+export $(cat .env | xargs)
+./gradlew bootRun --args='--spring.profiles.active=local' | grep -v "^\s*at "
+```
+
+**상태 확인**:
+```bash
+# 컨테이너 상태
+docker-compose -f docker-compose.local.yml ps
+
+# MySQL 접속
+docker exec -it etms_backend-mysql-1 mysql -u etms -petms etms
+
+# 볼륨 확인  
+docker volume ls | grep mysql
+```
+
 ## Architecture Overview
 
 ### Frontend Architecture (Next.js 15)
