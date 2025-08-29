@@ -1,5 +1,17 @@
 # CLAUDE.md
 
+역할: 사실 검증·오류 탐지 우선의 Claude Code.
+
+규칙:
+
+- 친절함보다 진실성·정확성. 불필요한 완곡어 금지(무례 금지).
+- 사용자의 주장·전제를 먼저 점검하고 거짓·과장·모순·논리 오류를 즉시, 단호하고 간결하게 지적.
+- 근거 없으면 "근거 부족"이라 명시하고 추측 금지.
+- 수치·코드·절차는 계산/검증 후만 제시; 가능하면 반례·테스트 포함.
+- 가정·제약·불확실성·출처를 분리해 명시. 안전 정책 위반은 짧게 거부하고 대안 제시.
+
+형식: ①오류/리스크 → ②정정·근거 → ③다음 조치(예: 테스트, 코드 수정). 길게 말하지 말 것.
+
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
@@ -12,6 +24,7 @@ ETMS Project (Training Management System) is a monorepo containing both frontend
 ## Repository Structure
 
 This is a Git submodules setup where:
+
 - `etms/` → `git@github.com:eastarjet-etms/etms_frontend.git`
 - `etms_backend/` → `git@github.com:eastarjet-etms/etms_backend.git`
 
@@ -55,7 +68,7 @@ npm run lint
 ```bash
 cd etms_backend/
 
-# Development 
+# Development
 ./gradlew build
 ./gradlew bootRun --args='--spring.profiles.active=local'
 
@@ -66,6 +79,7 @@ cd etms_backend/
 #### Database Management (데이터베이스 관리)
 
 **로컬 개발 환경**:
+
 - **데이터 저장**: Docker 볼륨 (`etms_backend_mysql_data`)
 - **데이터 영속화**: 애플리케이션 재시작 시 데이터 유지
 - **초기화 방식**: 조건부 초기화 (DB가 비어있을 때만 실행)
@@ -92,6 +106,7 @@ export $(cat .env | xargs)
 ```
 
 **상태 확인**:
+
 ```bash
 # 컨테이너 상태
 docker-compose -f docker-compose.local.yml ps
@@ -99,18 +114,20 @@ docker-compose -f docker-compose.local.yml ps
 # MySQL 접속
 docker exec -it etms_backend-mysql-1 mysql -u etms -petms etms
 
-# 볼륨 확인  
+# 볼륨 확인
 docker volume ls | grep mysql
 ```
 
 ## Architecture Overview
 
 ### Frontend Architecture (Next.js 15)
+
 - **Tech Stack**: Next.js 15, TailwindCSS v4, shadcn/ui, Zustand, React Query
 - **Patterns**: App Router, Compound Components, Feature-based organization
 - **API Integration**: Axios client with backend at `https://etmsapi.eland.co.kr`
 
 ### Backend Architecture (Spring Boot 3.5.0)
+
 - **Tech Stack**: Java 21, Spring Boot, JPA/Hibernate, QueryDSL, MySQL/H2
 - **Authentication**: Keycloak integration with JWT tokens
 - **Storage**: AWS S3 for file management
@@ -123,12 +140,14 @@ docker volume ls | grep mysql
 The system is organized around core airline training domains:
 
 **Training Management Flow**:
+
 1. **TrainingTemplate** → defines curriculum structure
 2. **Training** → actual training instances with auto-generated **Subjects**
 3. **DailySubject** → scheduled training sessions with instructor assignments
 4. **Attendance** → trainee participation tracking
 
 **Core Entities**:
+
 - **Member** → users (trainees, instructors, administrators)
 - **License** → pilot/cabin crew certifications and qualifications
 - **Classroom** → physical training locations and equipment
@@ -137,15 +156,17 @@ The system is organized around core airline training domains:
 ### API Integration Pattern
 
 **Backend API Structure**:
+
 ```
 /api/v1/trainings/{trainingId}/
 ├── attendances        # Training attendance records
-├── trainees          # Assigned trainees  
+├── trainees          # Assigned trainees
 ├── daily-subjects    # Scheduled sessions
 └── subjects          # Auto-generated curriculum subjects
 ```
 
 **Frontend State Management**:
+
 - **Server State**: React Query for API data caching
 - **Client State**: Zustand for complex UI state (especially DataTable)
 - **Forms**: React Hook Form with Zod validation
@@ -162,11 +183,13 @@ The system is organized around core airline training domains:
 ### Frontend Development Rules
 
 **Design System Compliance (MANDATORY)**:
+
 - Never use hardcoded colors: `text-[#color]` → use `text-gray-900`
 - Always use Typo component: `<h1>` → `<Typo variant="h1">`
 - Use Button variants: custom buttons → `<Button variant="solid" color="black">`
 
 **Component Architecture**:
+
 - Compound components for complex UI (DataTable pattern)
 - Feature-based file organization under `src/features/`
 - Co-locate components with pages when feature-specific
@@ -175,12 +198,14 @@ The system is organized around core airline training domains:
 ### Backend Development Rules
 
 **API Design Patterns (MANDATORY)**:
+
 - Use Nested Resource structure: `/trainings/{id}/attendances`
 - Consolidate similar endpoints with query parameters
 - DB-level pagination only (no memory-based pagination)
 - QueryDSL for complex queries and filtering
 
 **Entity Design**:
+
 - All entities extend BaseEntity with UUID primary keys
 - Use `@JsonIgnoreProperties` to prevent circular references
 - Auto-generation patterns (Training → Subject creation)
@@ -188,24 +213,27 @@ The system is organized around core airline training domains:
 ### Development Workflow
 
 1. **Frontend Development**: Work in `etms/` directory
-2. **Backend Development**: Work in `etms_backend/` directory  
+2. **Backend Development**: Work in `etms_backend/` directory
 3. **Cross-cutting Changes**: May require commits to both submodules
 4. **Integration**: Frontend connects to backend via configured API endpoints
 
 ## Common Integration Points
 
 ### Authentication Flow
+
 1. Frontend login → Keycloak authentication
 2. JWT token stored and managed by frontend auth system
 3. Backend validates JWT on each API request
 4. Frontend automatically refreshes expired tokens
 
 ### Data Flow Patterns
+
 - **Training Creation**: Frontend multi-step form → Backend auto-generates Subjects
 - **Schedule Management**: Calendar drag-drop → Real-time API updates
 - **File Uploads**: Frontend → Backend → S3 storage
 
 ### Shared Types and Contracts
+
 - Backend OpenAPI spec available at `backend-api.json` in frontend
 - Common data structures: PaginatedResponse, Member, Training entities
 - Date/time arrays from backend converted by frontend utilities
@@ -213,12 +241,14 @@ The system is organized around core airline training domains:
 ## Performance Considerations
 
 ### Frontend Optimizations
+
 - React.memo for expensive components
 - Zustand selective subscriptions for DataTable state
 - Dynamic imports for code splitting
 - Debounced search and filtering
 
-### Backend Optimizations  
+### Backend Optimizations
+
 - QueryDSL for efficient database queries
 - Fetch joins to prevent N+1 problems
 - Database-level pagination and filtering
@@ -227,11 +257,13 @@ The system is organized around core airline training domains:
 ## Development Environment Setup
 
 ### Prerequisites
+
 - Node.js 18+ (frontend)
 - JDK 21+ (backend)
 - Git with SSH access to submodule repositories
 
 ### Local Development
+
 1. Clone with submodules: `git clone --recurse-submodules`
 2. Frontend: `cd etms && npm install && npm run dev`
 3. Backend: `cd etms_backend && ./gradlew bootRun --args='--spring.profiles.active=local'`
@@ -239,6 +271,7 @@ The system is organized around core airline training domains:
 5. Access backend API docs at http://localhost:8080/swagger-ui/index.html
 
 ### External Dependencies
+
 - **Backend API**: https://etmsapi.eland.co.kr (production)
 - **Keycloak**: Configured for authentication
 - **AWS S3**: File storage integration
@@ -248,6 +281,8 @@ The system is organized around core airline training domains:
 
 - Each submodule has its own CLAUDE.md with detailed development guidelines
 - Follow established patterns from existing codebase
-- Frontend emphasizes design system compliance and component reusability  
+- Frontend emphasizes design system compliance and component reusability
 - Backend focuses on API consistency and database performance
 - Both applications are production-ready with comprehensive error handling and logging
+
+- serena 사용할때는 항상 pwd를 확인하도록
