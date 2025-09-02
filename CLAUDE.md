@@ -285,4 +285,14 @@ The system is organized around core airline training domains:
 - Backend focuses on API consistency and database performance
 - Both applications are production-ready with comprehensive error handling and logging
 
-- serena 사용할때는 항상 pwd를 확인하도록
+## Serena MCP Usage Guidelines
+
+**IMPORTANT: Serena MCP must always be executed from the project root directory**
+
+- Always verify current directory with `pwd` before using serena tools
+- Project root should be: `/Users/tallpizza/source/codestep/etms_proj`
+- If in a subdirectory (e.g., etms_backend), use `cd ..` to return to root
+- When using `relative_path` parameter:
+  - For backend code: use `"etms_backend"`
+  - For frontend code: use `"etms"`
+  - Never use paths like `src/main/java` directly
