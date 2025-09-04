@@ -296,3 +296,4 @@ The system is organized around core airline training domains:
   - For backend code: use `"etms_backend"`
   - For frontend code: use `"etms"`
   - Never use paths like `src/main/java` directly
+- 백엔드가 실행되고 있을때 컴파일만 실행하면 백엔드는 자동 재시작이 된다.
